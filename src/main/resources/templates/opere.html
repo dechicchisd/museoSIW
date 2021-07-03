@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='artisti')"></nav>
+  <main id="opere-main">
+  	<section class="museum-background">
+  		<div class="white-container">
+  		  <div class="titolo"><span>ELENCO OPERE</span></div>
+		  <ul class="lista">
+		  	<li th:each="opera : ${opere}">
+		  		<a class="blue-link"
+		  		   href="opera.html"
+		  		   th:href="@{'/opera' + '/' + ${opera.id}}"
+		  	   	   th:text="${opera.nome}">Nome Cognome</a>
+		  	   	<span class ="edit-button">
+		  	   	 	<a class="blue-button" th:href="@{'/eliminaOpera' +'/' + ${opera.id}}"><i class="fa fa-pencil"></i></a>
+		  	   	 	<a class="blue-button" id="deleteButton" th:href="@{'/eliminaOpera' +'/' + ${opera.id}}"><i class="fa fa-trash"></i></a>
+		  	    </span>
+		  	</li>  
+		  </ul>  		
+		  
+		  <a th:if="${session.credentials.ruolo == 'ADMIN'}" class="btn" id="addArtistaBtn" 
+		     th:href="@{/opera(artistaId=0)}">Aggiungi opera</a>
+		</div>
+	</section>
+  </main>
+</body>
+</html>

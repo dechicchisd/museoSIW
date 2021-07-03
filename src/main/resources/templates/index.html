@@ -1,43 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <link th:href="@{/css/index.css}" rel="stylesheet" />
-  <title>Wunderkammer - Home</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+    <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
 <body>
-  <nav>
-	<h1 id="logo"><a href="index.html">Wunderkammer</a></h1>
-    <ul>
-      <li><a class="anchor-item" href="#" th:href="@{/autore}">Collezioni</a></li>
-      <li><a class="anchor-item" href="#">About</a></li>
-    </ul>
-  </nav>
-  <main>
-	  <section id="showcase1">
-	  	<div class="container">
-	 		<div class="img-section" id="s1-img1">
-	 			<a class="btn" href="#">Scultura neoclassica</a>
-	 		</div>
-	  	</div>
-	  </section>
-	  
-	  <section id="showcase2">
-	  	<div class="container">
-	  		<div class="img-section" id="s2-img1">
-	 			<a class="btn" href="#">'800</a>
-	  		</div>
-	  		<div class="img-section" id="s2-img2">	 			
-	  			<a class="btn" href="#">Classico e Neoclassico</a>
-	  		</div>
-	  	</div>
-	  	
-	  
-	  </section>
+  <nav th:replace="fragments/base.html :: navbar(page='index')"></nav>
+  <main id="index">
+  	<section class="museum-background">
+  		<div class="no-scroll-subsection">
+		  	<div sec:authorize="isAnonymous()">
+				<a class="btn" href="#" th:href="@{/login}">Login</a>				
+			 	<a class="btn" href="#" th:href="@{/register}">Registrati</a>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<a class="btn" href="#" th:href="@{/logout}">Logout</a>
+			</div>
+ 		</div>
+ 	</section>
   </main>
-
- 
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles(title)">
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title th:text="${title}"></title>
+</head>
+
+<body>
+	<nav th:fragment="navbar(page)">
+		<h1 id="logo"><a th:href="@{/}">Wunderkammer</a></h1>
+	    <ul th:if="${session.credentials}">
+		  <li><a class="anchor-item" href="#" th:href="@{/home}">Home</a></li>
+	      <li><a class="anchor-item" href="#" th:href="@{/collezioni}">Collezioni</a></li>
+	      <li><a class="anchor-item" href="#" th:href="@{/artisti}">Artisti</a></li>
+	      <li><a class="anchor-item" href="#" th:href="@{/opere}">Opere</a></li>
+	      <li><a class="anchor-item" href="#">About</a></li>	      
+	      <li th:if="${session.credentials.ruolo == 'ADMIN'}"><a class="anchor-item" href="#">Admin</a></li>	      
+	    </ul>
+	    
+	    <ul th:unless="${session.credentials}">
+		  <li><a class="anchor-item" href="#" th:href="@{/home}">Home</a></li>
+	      <li><a class="anchor-item" href="#" th:href="@{/collezioni}">Collezioni</a></li>
+	      <li><a class="anchor-item" href="#" th:href="@{/artisti}">Artisti</a></li>
+	      <li><a class="anchor-item" href="#" th:href="@{/opere}">Opere</a></li>
+	      <li><a class="anchor-item" href="#">About</a></li>	      
+	    </ul>
+  	</nav>
+</body>
+</html>

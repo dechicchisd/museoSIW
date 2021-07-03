@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='registerForm')"></nav>
+  <main id="registerForm">
+  	<section class="museum-background">
+  		<div class="no-scroll-subsection">
+  			<div class="white-container">
+  				<div class="titolo"><span>REGISTRAZIONE</span></div>
+			  	<form th:action ="@{/register}" method="POST">
+			  		<div class="input-container">
+			  			<div>
+			  				<div>Nome:</div>
+			  				<div><input name="nome" type="text" required></div>
+			  				<div th:if="${#fields.hasErrors('user.nome')}"
+                				th:errors="${user.nome}" th:style="'color:red'">
+                			</div>
+			  			</div>
+			  			<div>
+			  				<div>Cognome:</div>
+			  				<div><input name="cognome" type="text" required></div>
+			  				<div th:if="${#fields.hasErrors('user.cognome')}"
+                				th:errors="${user.cognome}" th:style="'color:red'">
+                			</div>
+			  			</div>
+			  			<div>
+			  				<div>Username:</div>
+			  				<div><input name="username" type="text" required></div>
+			  				<div th:if="${#fields.hasErrors('credentials.username')}"
+                				th:errors="${credentials.username}" th:style="'color:red'">
+                			</div>
+			  			</div>
+			  			<div>
+			  				<div>Password:</div>
+			  				<div><input name="password" type="password" required></div>
+			  				<div th:if="${#fields.hasErrors('credentials.password')}"
+                				th:errors="${credentials.password}" th:style="'color:red'">
+                			</div>
+			  			</div>
+			  		</div>
+			  		<div class="button-section">
+			  			<div><button type="submit">Registrati</button></div>
+			  		</div>
+			  			
+			  		
+			  	</form>
+		  	</div>
+		</div>
+	</section>
+  </main>
+
+</body>
+</html>

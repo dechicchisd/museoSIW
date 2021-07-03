@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='artisti')"></nav>
+  <main id="addArtista">
+  	<section>
+	  	<form th:action="@{collezione}" method="POST">
+	  		<div>
+	  			<div>Nome:</div>
+	  			<div><input th:name="nome" type="text"></div>
+	  		</div>
+  			<div>
+	  			<div>Descrizione:</div>
+	  			<div>
+	  				<textarea th:name="descrizione" rows="5" cols="70" maxlength="240"></textarea>
+	  			</div>
+	  		</div>
+	  		<div>
+  				<div>Seleziona curatore:</div>
+	  			<select>
+	  				<option th:each="c : ${curatori}"
+	  				  		th:name="curatore"
+	  				  		th:text="|${c.nome} ${c.cognome}|">
+	  				</option>
+	  			</select>
+	  		</div>
+	  		<div><button type="submit">Inserisci</button></div>
+	  	</form>
+	 </section>
+  </main>
+
+</body>
+</html>

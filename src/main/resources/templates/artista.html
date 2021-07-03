@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='artista')"></nav>
+  <main id="artista-main">
+	  	<section class="museum-background">
+  		<div class="container-trasparente">
+	  		<span id="nome-artista" th:text="|${artista.nome} ${artista.cognome}|">Nome</span>
+	  		
+	  		<section class="section-trasparente">
+		  		<div class="foto-container">
+		  			<img th:src="${artista.path}" >
+		  		</div>
+		  		<div class="info-container">
+		  			<div class="background-opaco">
+			  			<div class="info">
+				  			<span>Nascita: </span>
+				  			<span th:text="|${nascita} &nbsp; ${artista.luogoDiNascita}|"></span>
+			  			</div>
+			  			<div class="info">
+				  			<span>Morte: </span>
+				  			<span th:text="|${morte} &nbsp; ${artista.luogoDiMorte}|"></span>
+			  			</div>
+						<div class="info">
+				  			<span>Descrizione: </span>
+				  			<span th:text="${artista.biografia}"></span>
+			  			</div>
+		  			</div>
+		  		</div>
+		  	</section>
+		  	<section>
+		  		<div>
+			  		<span><h2>Opere</h2></span>
+			  		
+			  		
+			  		<ul id="lista-opere">
+						<li th:each="opera : ${opere}">
+							
+					  		<a class="blue-link" href="artista.html" 
+					  		   th:href="@{'/opera' + '/' + ${opera.id}}">
+					  		   <img th:src="${opera.path}"/>
+		  	   	   			</a>
+				  		</li>
+				  	</ul> 
+				  	
+			  	</div>
+			</section>
+			<div class="button-div">
+					<a th:if="${session.credentials.ruolo == 'ADMIN'}" class="btn" 
+			  	       th:href="@{/opera(artistaId=${artista.id})}">Aggiungi opera
+			  	    </a>
+			</div>
+			  	    
+	  	</div>
+	 </section>
+  </main>
+</body>
+</html>

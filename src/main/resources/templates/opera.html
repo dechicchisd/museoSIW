@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='artista')"></nav>
+  <main id="opera-main">
+	  	<section class="museum-background">
+  		<div class="container-trasparente">
+	  		<span id="nome-opera" th:text="${opera.nome}">Nome</span>
+	  		
+	  		<section class="section-trasparente">
+		  		<div class="foto-container">
+		  			<img th:src="${opera.path}" >
+		  		</div>
+		  		<div class="info-container">
+		  			<div class="background-opaco">
+			  			<div class="info">
+				  			<span>Artista: </span>
+				  			<span th:text="|${artista.nome} ${artista.cognome}|"></span>
+			  			</div>
+			  			<div class="info">
+				  			<span>Collezione: </span>
+				  			<span th:text="${artista.luogoDiMorte}"></span>
+			  			</div>
+			
+		  			</div>
+		  		</div>
+		  	</section>
+			  	    
+	  	</div>
+	 </section>
+  </main>
+</body>
+</html>
