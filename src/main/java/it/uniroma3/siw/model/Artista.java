@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
+
 @Data
 @Entity
 public class Artista {
@@ -48,4 +49,5 @@ public class Artista {
 		this.opere.add(opera);
 	}
 
+	
 }

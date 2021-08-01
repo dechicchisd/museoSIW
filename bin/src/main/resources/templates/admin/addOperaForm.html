@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <main id="addOpera">
+  	<form th:action="@{opera}" method="POST" th:object="${opera}" enctype="multipart/form-data">
+  		<div>Nome: 
+  			<input type="text" th:name="nome">
+  		</div>
+  		<div>Artista: 
+  			<select th:name="artista">
+  				<option th:each="a : ${artisti}"
+  				 		th:text="|${a.nome} ${a.cognome}|"
+  				  		th:value="${a}"
+  				 		th:selected="${a.id==artistaCorrente.id}">
+  				</option>
+  				  
+  			</select>
+  		</div>
+  		<div>Collezione: 
+  			<select th:name="collezione">
+  				<option th:each="c : ${collezioni}"
+  				  		th:text="${c.nome}"
+  				  		th:value="${c}">
+  				 </option>
+  				  
+  			</select>
+  		</div>
+  		
+  		<div>
+  			Scegli immagine:
+  			<input type="file" name="file">
+  		</div>
+  		
+  		<div><button type="submit">Inserisci</button></div>
+  	</form>
+	 
+  </main>
+
+</body>
+</html>

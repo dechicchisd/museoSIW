@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+    <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='index')"></nav>
+  <main id="index">
+  	<section class="museum-background">
+  		<div class="no-scroll-subsection">
+		  	<div sec:authorize="isAnonymous()">
+				<a class="btn" href="#" th:href="@{/login}">Login</a>				
+			 	<a class="btn" href="#" th:href="@{/register}">Registrati</a>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<a class="btn" href="#" th:href="@{/logout}">Logout</a>
+			</div>
+ 		</div>
+ 	</section>
+  </main>
+
+</body>
+</html>

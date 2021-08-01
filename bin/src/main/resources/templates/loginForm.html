@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='registerForm')"></nav>
+  <main id="loginForm">
+  	<section class="museum-background">
+  			<div class="white-container">
+  				<div class="titolo"><span>LOGIN</span></div>
+			  	<form th:action ="@{/login}" method="POST">
+			  		<div class="input-container">
+			  			
+			  			<div>
+			  				<div>Username:</div>
+			  				<div><input name="username" type="text" required></div>
+			  				
+			  			</div>
+			  			<div>
+			  				<div>Password:</div>
+			  				<div><input name="password" type="password" required></div>
+			  				
+			  			</div>
+			  		</div>
+			  		<div class="button-section">
+			  			<div><button type="submit">Login</button></div>
+			  		</div>
+			  			
+			  		
+			  	</form>
+		  	</div>
+	</section>
+  </main>
+
+</body>
+</html>

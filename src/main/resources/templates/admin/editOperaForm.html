@@ -5,25 +5,27 @@
 <body>
 <!--DEVO SOSTITUIRE NAV CON HEADER-->
   <nav th:replace="fragments/base.html :: navbar(page='artista')"></nav>
-  <main id="opera-main">
+  <main id="opera-edit">
 	 <section class="museum-background">
   		<div class="white-container">
-  			<div class="titolo"><span>AGGIUNGI OPERA</span></div>
-		  	<form th:action="@{opera}" method="POST" th:object="${opera}" enctype="multipart/form-data">
+  			<div class="titolo"><span>MODIFICA OPERA</span></div>
+		  	
+		  	<form th:action="@{modificaOpera}" method="POST" th:object="${opera}" enctype="multipart/form-data">
 		  		<div class="input-container">
 			  		<div>
 			  			<div>Nome:</div> 
-			  			<div><input type="text" th:name="nome"></div>
+			  			<div><input type="text" th:field="*{nome}"></div>
 			  		</div>
 			  		
 			  		
-			  		<div>
+			  		<!--<div>
 				  		<div>Artista: </div>
 				  		<div><select th:field=*{artista.id}>
 				  				<option value="" selected>-- Seleziona artista --</option>
 				  				<option th:each="a : ${artisti}"
 				  				 		th:text="|${a.nome} ${a.cognome}|"
-				  				  		th:value="${a.id}">
+				  				  		th:value="${a.id}"
+				  				  		th:selected="${a.id == opera.artista.id}">
 				  				</option>
 				  				
 				  				  
@@ -37,12 +39,13 @@
 				  				<option value="">-- Seleziona collezione --</option>
 				  				<option th:each="c : ${collezioni}"
 				  				  		th:text="${c.nome}"
-				  				  		th:value="${c.id}">
+				  				  		th:value="${c.id}"
+				  				  		th:selected="${c.id == opera.collezione.id}">
 				  				 </option>
 				  				  
 				  			</select>
 				  		</div>
-			  		</div>
+			  		</div>-->
 			  		
 			  		<div>
 			  			<div>Scegli immagine:</div>
@@ -50,7 +53,7 @@
 			  		</div>
 			  		
 			  		
-			  		<div><button type="submit">Inserisci</button></div>
+			  		<div><button type="submit">Modifica</button></div>
 		  		</div>
 		  	</form>
   		</div>

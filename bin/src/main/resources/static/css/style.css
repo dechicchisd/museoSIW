@@ -1,0 +1,356 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+main{
+	display: flex;
+	min-height: 100vh;
+}
+section{
+	margin-top: 62px;
+}
+
+/*ul li{
+	padding: 10px;
+	list-style-type: none;
+}*/
+
+.lista li{
+	padding: 10px;
+	list-style-type: none;
+}
+
+.blue-link:visited, .blue-button:visited{
+	color: blue;
+}
+
+#deleteButton:hover{
+	color: red;
+}
+
+.blue-link{
+	display: inline-block;
+	width: 240px;
+}
+
+.btn{
+	height: 50px;
+	width: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color:  #1b1c1c;
+	font-size: 18px;
+	text-decoration: none;
+	color: white;
+	margin: 40px;
+}
+
+.btn:hover{
+	background-color: #404242;
+	font-size: 20px;
+}
+
+
+
+button{
+	font-size: 15px;
+	padding: 5px 10px;
+	
+}
+
+.button-section{
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;	
+}
+
+
+/*navbar*/
+
+nav{
+	display: flex;
+	position: fixed;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+  	background-color: #1b1c1c;
+}
+
+nav ul{
+	display: flex;
+	margin-right: 20px;
+}
+
+nav li{
+	list-style: none;
+}
+
+nav a{
+	display: block;
+	color: white;
+  	text-decoration: none;
+}
+
+.anchor-item{
+	padding: 20px 40px;
+	font-size: 20px;
+}
+
+.anchor-item:hover{
+	background-color: #404242;
+}
+
+#logo{
+	margin-left: 20px;
+	font-size: 36px
+}
+
+
+
+.container-trasparente{
+	width: 90%;
+	min-height: 80vh;
+	background-color: rgba(255, 255, 255, 0.6);
+	margin: 30px;
+	text-align: center;
+}
+
+
+#artista-main .container-trasparente {
+	display: flex;
+	width: 90%;
+	min-height: 80vh;
+	background-color: rgba(255, 255, 255, 0.6);
+	flex-direction: column;
+	justify-content: space-around;
+	margin: 30px;
+}
+
+.container-trasparente section{
+	display: flex;
+	justify-content: space-around;
+}
+
+.info-container{
+	width: 50%;
+}
+
+.info{
+	font-size: 18px;
+	padding: 8px 15px;
+}
+
+.foto-container img{
+	height: 300px;
+	width: auto;
+}
+
+#opera-main .foto-container img{
+	height: 450px;
+}
+
+#nome-artista, #nome-opera{
+	display: block;
+	font-weight: bold;
+	font-size: 30px;
+	text-transform: uppercase;
+	margin-top: 20px;
+}
+.background-opaco{
+	background-color: white;
+	min-height: 100px;
+	text-align: left;
+}
+
+
+
+
+
+.museum-background{
+	background: url(../img/edificio.jpg) repeat fixed 100%;
+	background-size: 100% 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.white-container{
+	min-width: 450px;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+
+.white-container span{
+	font-size: 25px;
+	font-weight: bold;
+	margin-top: 30px;
+}
+
+.white-container .titolo{
+	text-align: center;
+	padding: 20px;
+}
+
+.edit-button{
+	margin: 30px;
+}
+
+.edit-button a{
+	margin: 15px;
+}
+
+.lista li{
+	margin-left: 40px;	
+}
+
+
+.lista a{
+	font-size: 20px;
+}
+
+.input-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#loginForm .input-container{
+	height: 18vh;
+	width: 50vh;
+}
+
+#registerForm .input-container{
+	height: 35vh;
+	width: 50vh;
+}
+
+
+/*HOME1*/
+
+
+.collezione{
+	background-color: rgba(255, 255, 255, 0.6);
+	width: 90%;
+	height: 400px;
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+	
+}
+
+#ultima-collezione{
+	margin-bottom: 100px;
+	
+}
+
+.collezione span{
+	font-size: 30px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+
+#artista-main span, #opera-main span{
+	text-align: center;
+}
+
+#artista-main h2{
+	padding-bottom: 40px;
+}
+
+#lista-opere{
+	width: 1310px;
+	justify-content: space-around;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#lista-opere li{
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+#lista-opere img{
+	width: 300px;
+	height: auto;
+}
+
+.button-div{
+	display: flex;
+	justify-content: center;
+}
+
+.img-link{
+	display: block;
+	height: 300px;
+	width: 300px;
+	overflow: hidden;
+}
+
+.opere{
+	display: flex;
+	height: 90%;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.opere img{
+	width: 300px;
+	height: auto;
+}
+
+/*artisti*/
+
+
+#artisti .anchor-item{
+	padding: 20px 40px;
+	font-size: 20px;
+}
+
+#artisti .anchor-item:hover{
+	background-color: #404242;
+}
+
+
+
+/*artisti-section*/
+
+
+
+
+#artisti a{
+	color: blue;
+  	font-size: 18px;  	
+}
+
+
+#artisti li{
+	padding: 5px;
+	list-style-type: none;
+}
+
+#artisti {
+	margin-top: 5px;
+}
+
+#addArtistaBtn{
+	margin-top: 15px;
+}
+
+
+
+form div{
+	padding:8px;
+	display:flex;
+}
+
+
+
+.section-trasparente{
+	margin-top: 40px;
+}

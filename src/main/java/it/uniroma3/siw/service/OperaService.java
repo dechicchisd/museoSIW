@@ -53,6 +53,14 @@ public class OperaService {
 		return this.operaRepository.findByArtista(a);
 	}
 
+	@Transactional
 	public void deleteOpera(Long id) {
 		this.operaRepository.delete(this.cercaOperaPerId(id));	}
+	
+	@Transactional
+	public void updateOpera(Opera opera) {
+		this.operaRepository.updateNome(opera.getId(), opera.getNome());
+//		this.operaRepository.updateArtista(opera);
+//		this.operaRepository.updateCollezione(opera);
+	}
 }

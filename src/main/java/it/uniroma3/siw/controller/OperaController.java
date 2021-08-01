@@ -18,7 +18,6 @@ import it.uniroma3.siw.service.ArtistaService;
 import it.uniroma3.siw.service.CollezioneService;
 import it.uniroma3.siw.service.OperaService;
 import it.uniroma3.siw.utils.UtilsSiw;
-import net.bytebuddy.asm.Advice.This;
 
 @Controller
 public class OperaController {
@@ -40,7 +39,6 @@ public class OperaController {
 		model.addAttribute("opera", new Opera());
 		model.addAttribute("artisti", this.artistaService.tutti());
 		model.addAttribute("collezioni", this.collezioneService.tutti());
-		model.addAttribute("artistaCorrente", artistaService.cercaArtistaPerId(id));
 		return "admin/addOperaForm.html";
 	}
 	
@@ -53,7 +51,9 @@ public class OperaController {
 		this.operaValidator.validate(opera, bindinResult);
 		
 		if(!bindinResult.hasErrors()) {
-			Artista artista =  opera.getArtista();
+			Long idArtista = opera.getArtista().getId();
+			Artista artista = artistaService.cercaArtistaPerId(idArtista);
+			model.addAttribute("artista", artista);
 			
 			String parent;
 			String name = file.getOriginalFilename();
@@ -74,7 +74,7 @@ public class OperaController {
 			model.addAttribute("morte", UtilsSiw.formatDate(artista.getDataDiMorte()));
 			return "artista.html";
 		}
-		return "addArtistaForm.html";
+		return "admin/addArtistaForm.html";
 	}
 	
 	@RequestMapping(value="/opere", method=RequestMethod.GET)
@@ -96,5 +96,50 @@ public class OperaController {
 		this.operaService.deleteOpera(id);
 		model.addAttribute("opere", this.operaService.tutti());
 		return "opere.html";
+	}
+	
+	@RequestMapping(value="/modificaOpera/{id}", method=RequestMethod.GET)
+	public String getEditOpera(@PathVariable("id") Long id, Model model){
+		Opera opera = operaService.cercaOperaPerId(id);
+		model.addAttribute("opera", opera);
+//		model.addAttribute("nomeOpera", opera.getNome());
+//		model.addAttribute("idArtista", opera.getArtista().getId());
+//		model.addAttribute("idCollezione", opera.getCollezione().getId());
+//		model.addAttribute("newOpera", new Opera());
+		model.addAttribute("artisti", this.artistaService.tutti());
+		model.addAttribute("collezioni", this.collezioneService.tutti());
+		return "admin/editOperaForm.html";
+	}
+	
+	@RequestMapping(value="/modificaOpera", method=RequestMethod.POST)
+	public String modificaOpera(@ModelAttribute("newOpera") Opera opera, 
+								@RequestParam("file") MultipartFile file,
+								BindingResult bindinResult,
+								Model model){
+		
+		this.operaValidator.validate(opera, bindinResult);
+		
+		//if(!bindinResult.hasErrors()) {
+			Long idArtista = opera.getArtista().getId();
+			Artista artista = artistaService.cercaArtistaPerId(idArtista);
+			
+			String parent;
+			String name = file.getOriginalFilename();
+			if(artista.getCognome() != null)
+				parent = artista.getCognome().replaceAll(" ", "").toLowerCase();
+			
+			else
+				parent = artista.getNome().replaceAll(" ", "").toLowerCase();
+			
+			String path = "/img/" + parent + "/" + name;
+			opera.setPath(path);
+			opera.setArtista(artista);
+			this.operaService.updateOpera(opera);
+			
+			model.addAttribute("opere", this.operaService.tutti());
+
+			return "opere.html";
+		//}
+		//return "admin/editOperaForm.html";
 	}
 }
