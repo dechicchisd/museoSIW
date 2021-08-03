@@ -10,15 +10,19 @@
   		<div class="white-container">
   			<div class="titolo"><span>MODIFICA OPERA</span></div>
 		  	
-		  	<form th:action="@{modificaOpera}" method="POST" th:object="${opera}" enctype="multipart/form-data">
+		  	<form th:action="@{/editOpera/{id} (id = ${opera.id})}" method="POST" th:object="${opera}" enctype="multipart/form-data">
 		  		<div class="input-container">
+			  		<div>
+			  			<div>ID:</div> 
+			  			<div><input type="text" th:field="*{id}" readonly disabled></div>
+			  		</div>
 			  		<div>
 			  			<div>Nome:</div> 
 			  			<div><input type="text" th:field="*{nome}"></div>
 			  		</div>
 			  		
 			  		
-			  		<!--<div>
+			  		<div>
 				  		<div>Artista: </div>
 				  		<div><select th:field=*{artista.id}>
 				  				<option value="" selected>-- Seleziona artista --</option>
@@ -45,7 +49,7 @@
 				  				  
 				  			</select>
 				  		</div>
-			  		</div>-->
+			  		</div>
 			  		
 			  		<div>
 			  			<div>Scegli immagine:</div>

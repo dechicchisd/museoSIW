@@ -94,4 +94,5 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
 }

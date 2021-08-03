@@ -97,12 +97,4 @@ public class ArtistaController {
 		return "artisti";
 	}
 	
-//	@RequestMapping(value="/modificaArtista/{id}", method=RequestMethod.GET)
-//	public String modificaArtista(@PathVariable("id") Long id, Model model, HttpServletRequest request){
-//		Artista artista = this.artistaService.cercaArtistaPerId(id);
-//		model.addAttribute("artista", artista);
-//		
-//		return "admin/addArtistaForm";
-//	}
-	
 }

@@ -1,6 +1,8 @@
 package it.uniroma3.siw.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.controller.validator.UserValidator;
+import it.uniroma3.siw.model.Collezione;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.service.CollezioneService;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.utils.UtilsSiw;
 
 @Controller
 public class AuthenticationController {
@@ -33,6 +38,9 @@ public class AuthenticationController {
 	
 	@Autowired
 	private CredentialsValidator credentialsValidator;
+	
+	@Autowired
+	private CollezioneService collezioneService;
 	
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET) 
@@ -53,12 +61,16 @@ public class AuthenticationController {
 	}
 	
     @RequestMapping(value = "/default", method = RequestMethod.GET)
-    public String defaultAfterLogin(HttpServletRequest request) {
+    public String defaultAfterLogin(HttpServletRequest request, Model model) {
     	HttpSession session = request.getSession();
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	
     	session.setAttribute("credentials", credentials);
+    	
+    	List<Collezione> collezioni = collezioneService.tutti();
+    	Collezione[] randomColl = UtilsSiw.randomSelection(collezioni);
+    	model.addAttribute("collezioni", randomColl);
 
     	return "home1.html";
     }

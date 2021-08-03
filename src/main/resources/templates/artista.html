@@ -49,7 +49,7 @@
 			</section>
 			<div class="button-div">
 					<a th:if="${session.credentials.ruolo == 'ADMIN'}" class="btn" 
-			  	       th:href="@{/opera(artistaId=${artista.id})}">Aggiungi opera
+			  	       th:href="@{/getSave/{id} (id = ${artista.id})}">Aggiungi opera
 			  	    </a>
 			</div>
 			  	    

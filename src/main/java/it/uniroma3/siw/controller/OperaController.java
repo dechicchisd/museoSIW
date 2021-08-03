@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma3.siw.controller.validator.OperaValidator;
 import it.uniroma3.siw.model.Artista;
@@ -34,9 +37,10 @@ public class OperaController {
 	@Autowired
 	private OperaValidator operaValidator;
 	
-	@RequestMapping(value="/opera", method=RequestMethod.GET)
-	public String getAddOperaForm(@RequestParam("artistaId") Long id, Model model) {
+	@RequestMapping(value="getSave/{id}", method=RequestMethod.GET)
+	public String getAddOperaForm(Model model, @PathVariable("id") Long id) {
 		model.addAttribute("opera", new Opera());
+		model.addAttribute("artista", artistaService.cercaArtistaPerId(id));
 		model.addAttribute("artisti", this.artistaService.tutti());
 		model.addAttribute("collezioni", this.collezioneService.tutti());
 		return "admin/addOperaForm.html";
@@ -87,7 +91,7 @@ public class OperaController {
 	public String getOpera(@PathVariable("id") Long id, Model model) {
 		Opera opera = this.operaService.cercaOperaPerId(id);
 		model.addAttribute("opera", opera);
-		model.addAttribute("artista", opera.getArtista());
+		model.addAttribute("art", opera.getArtista());
 		return "opera.html";
 	}
 	
@@ -98,28 +102,25 @@ public class OperaController {
 		return "opere.html";
 	}
 	
-	@RequestMapping(value="/modificaOpera/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/getEditOperaForm/{id}", method=RequestMethod.GET)
 	public String getEditOpera(@PathVariable("id") Long id, Model model){
 		Opera opera = operaService.cercaOperaPerId(id);
 		model.addAttribute("opera", opera);
-//		model.addAttribute("nomeOpera", opera.getNome());
-//		model.addAttribute("idArtista", opera.getArtista().getId());
-//		model.addAttribute("idCollezione", opera.getCollezione().getId());
-//		model.addAttribute("newOpera", new Opera());
 		model.addAttribute("artisti", this.artistaService.tutti());
 		model.addAttribute("collezioni", this.collezioneService.tutti());
 		return "admin/editOperaForm.html";
 	}
 	
-	@RequestMapping(value="/modificaOpera", method=RequestMethod.POST)
+	@RequestMapping(value="/editOpera/{id}", method=RequestMethod.POST)
 	public String modificaOpera(@ModelAttribute("newOpera") Opera opera, 
 								@RequestParam("file") MultipartFile file,
+								@PathVariable("id") Long id,
 								BindingResult bindinResult,
 								Model model){
 		
 		this.operaValidator.validate(opera, bindinResult);
 		
-		//if(!bindinResult.hasErrors()) {
+		if(!bindinResult.hasErrors()) {
 			Long idArtista = opera.getArtista().getId();
 			Artista artista = artistaService.cercaArtistaPerId(idArtista);
 			
@@ -134,12 +135,46 @@ public class OperaController {
 			String path = "/img/" + parent + "/" + name;
 			opera.setPath(path);
 			opera.setArtista(artista);
-			this.operaService.updateOpera(opera);
+			this.operaService.updateOpera(opera, id);
 			
 			model.addAttribute("opere", this.operaService.tutti());
 
 			return "opere.html";
-		//}
-		//return "admin/editOperaForm.html";
+		}
+		return "admin/editOperaForm.html";
 	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value="/save", method=RequestMethod.POST)
+	public String saveOpera(@ModelAttribute("opera") Opera opera, 
+								//@RequestParam("file") MultipartFile file,
+								//BindingResult bindinResult,
+								Model model){
+		
+		
+		this.operaService.inserisci(opera);
+		model.addAttribute("opere", this.operaService.tutti());
+
+		return "opere.html";
+	}
+	
+//	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
+//	public String showEditOpera(@PathVariable(name = "id") Long id, Model model) {
+//		model.addAttribute("opera", operaService.cercaOperaPerId(id));
+//		return "/admin/editProva";
+//	}
+//	
+//	@RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
+//	public String edit(@PathVariable("id") Long id, @ModelAttribute("opera") Opera opera, Model model) {
+//		System.out.println("EDIT" + id + opera.getNome() + "\n\n\n\n\n\n");
+//		operaService.updateOpera(opera);
+//		model.addAttribute("opere", this.operaService.tutti());
+//		return "opere.html";
+//	}
+//	
+	
 }

@@ -58,8 +58,9 @@ public class OperaService {
 		this.operaRepository.delete(this.cercaOperaPerId(id));	}
 	
 	@Transactional
-	public void updateOpera(Opera opera) {
-		this.operaRepository.updateNome(opera.getId(), opera.getNome());
+	public void updateOpera(Opera opera, Long id) {
+
+		this.operaRepository.updateNome(id, opera.getNome());
 //		this.operaRepository.updateArtista(opera);
 //		this.operaRepository.updateCollezione(opera);
 	}

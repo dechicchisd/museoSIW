@@ -1,8 +1,18 @@
 package it.uniroma3.siw.utils;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import it.uniroma3.siw.model.Collezione;
+import it.uniroma3.siw.service.CollezioneService;
 
 public class UtilsSiw {
+	
+	@Autowired
+	CollezioneService collService;
 
 	public static String formatDate(LocalDate date) {
 		int day = date.getDayOfMonth();
@@ -63,5 +73,18 @@ public class UtilsSiw {
 		String stringDate = day + " " + month + " " + year + ",";
 		
 		return stringDate;
+	}
+	
+	
+	public static Collezione[] randomSelection(List<Collezione> collezioni) {
+		Collezione[] randomColl = new Collezione[2];
+		
+		Random rand = new Random();
+		for(int i=0; i<randomColl.length; i++) {
+			randomColl[i]=collezioni.get(rand.nextInt(collezioni.size()));
+		}
+		
+		return randomColl;
+		
 	}
 }

@@ -9,7 +9,7 @@
 	 <section class="museum-background">
   		<div class="white-container">
   			<div class="titolo"><span>AGGIUNGI OPERA</span></div>
-		  	<form th:action="@{opera}" method="POST" th:object="${opera}" enctype="multipart/form-data">
+		  	<form th:action="@{/opera}" method="POST" th:object="${opera}" enctype="multipart/form-data">
 		  		<div class="input-container">
 			  		<div>
 			  			<div>Nome:</div> 
@@ -22,7 +22,7 @@
 				  		<div><select th:field=*{artista.id}>
 				  				<option value="" selected>-- Seleziona artista --</option>
 				  				<option th:each="a : ${artisti}"
-				  				 		th:text="|${a.nome} ${a.cognome}|"
+				  				 		th:text="|${a.nome} ${a.cognome} ${a.id} ${artista.id}|"
 				  				  		th:value="${a.id}">
 				  				</option>
 				  				
