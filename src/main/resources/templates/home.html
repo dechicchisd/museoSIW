@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='index')"></nav>
+  <main id="home1">
+  
+  	<section class="museum-background">
+	  			<div class="collezione">
+	 				<div><span th:text=${collezioni[0].nome}>Nome Collezione</span></div>
+		  			<div class="opere">
+		  				<div th:each = "o : ${collezioni[0].opere}">
+			  				<a class="img-link" th:href="@{/home}">
+			  					<img alt="" th:src="${o.path}">
+			  				</a>
+		  				</div>
+		  			</div>
+	  			</div>
+	  			
+	  			<div class="collezione" id="ultima-collezione">
+	  			  	<div><span th:text=${collezioni[1].nome}>Nome Collezione</span></div>
+	  				<div class="opere">
+	  					<div th:each = "o : ${collezioni[1].opere}">
+		  					<a class="img-link" th:href="@{/home}">
+		  						<img alt="" th:src="${o.path}">
+		  					</a>
+	  					</div>
+	  				</div>
+	  			</div>
+	  			
+ 	</section>
+  </main>
+
+</body>
+</html>

@@ -56,12 +56,12 @@ public class OperaService {
 	@Transactional
 	public void deleteOpera(Long id) {
 		this.operaRepository.delete(this.cercaOperaPerId(id));	}
-	
-	@Transactional
-	public void updateOpera(Opera opera, Long id) {
-
-		this.operaRepository.updateNome(id, opera.getNome());
-//		this.operaRepository.updateArtista(opera);
-//		this.operaRepository.updateCollezione(opera);
-	}
+//	
+//	@Transactional
+//	public void updateOpera(Opera opera, Long id) {
+//
+//		this.operaRepository.updateNome(id, opera.getNome());
+//		this.operaRepository.updateArtista(id, opera.getArtista().getId());
+////		this.operaRepository.updateCollezione(opera);
+//	}
 }

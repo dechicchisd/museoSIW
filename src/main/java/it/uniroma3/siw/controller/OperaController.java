@@ -91,7 +91,7 @@ public class OperaController {
 	public String getOpera(@PathVariable("id") Long id, Model model) {
 		Opera opera = this.operaService.cercaOperaPerId(id);
 		model.addAttribute("opera", opera);
-		model.addAttribute("art", opera.getArtista());
+		model.addAttribute("artista", opera.getArtista());
 		return "opera.html";
 	}
 	
@@ -117,10 +117,11 @@ public class OperaController {
 								@PathVariable("id") Long id,
 								BindingResult bindinResult,
 								Model model){
+		System.out.println(opera.getArtista().getId() + "\n\n\n\n\n\n");
 		
 		this.operaValidator.validate(opera, bindinResult);
 		
-		if(!bindinResult.hasErrors()) {
+		//if(!bindinResult.hasErrors()) {
 			Long idArtista = opera.getArtista().getId();
 			Artista artista = artistaService.cercaArtistaPerId(idArtista);
 			
@@ -135,13 +136,14 @@ public class OperaController {
 			String path = "/img/" + parent + "/" + name;
 			opera.setPath(path);
 			opera.setArtista(artista);
-			this.operaService.updateOpera(opera, id);
+			this.operaService.deleteOpera(id);
+			this.operaService.inserisci(opera);
 			
 			model.addAttribute("opere", this.operaService.tutti());
 
 			return "opere.html";
-		}
-		return "admin/editOperaForm.html";
+		//}
+		//return "admin/editOperaForm.html";
 	}
 	
 	

@@ -78,10 +78,17 @@ public class UtilsSiw {
 	
 	public static Collezione[] randomSelection(List<Collezione> collezioni) {
 		Collezione[] randomColl = new Collezione[2];
-		
+		int index, r;
+		int i=0;
 		Random rand = new Random();
-		for(int i=0; i<randomColl.length; i++) {
-			randomColl[i]=collezioni.get(rand.nextInt(collezioni.size()));
+		index = rand.nextInt(collezioni.size());
+
+		while(randomColl[randomColl.length - 1] == null) {
+			if((r = rand.nextInt(collezioni.size())) != index) {
+				index = r;
+				randomColl[i]=collezioni.get(index);
+				i++;
+			}
 		}
 		
 		return randomColl;
