@@ -18,6 +18,7 @@ public class OperaService {
 	@Autowired
 	private OperaRepository operaRepository;
 	
+	
 	@Transactional
 	public Opera inserisci(Opera opera) {
 		return operaRepository.save(opera);
@@ -54,14 +55,14 @@ public class OperaService {
 	}
 
 	@Transactional
+	public List<Opera> getOperePerArtistaId(Long id){
+		return this.operaRepository.findByArtistaId(id);
+	}
+	
+	@Transactional
 	public void deleteOpera(Long id) {
-		this.operaRepository.delete(this.cercaOperaPerId(id));	}
-//	
-//	@Transactional
-//	public void updateOpera(Opera opera, Long id) {
-//
-//		this.operaRepository.updateNome(id, opera.getNome());
-//		this.operaRepository.updateArtista(id, opera.getArtista().getId());
-////		this.operaRepository.updateCollezione(opera);
-//	}
+		this.operaRepository.delete(this.cercaOperaPerId(id));
+		
+	}
+
 }

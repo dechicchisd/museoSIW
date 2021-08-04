@@ -27,7 +27,7 @@ public class CollezioneService {
 	}
 	
 	@Transactional
-	public Collezione cercaArtistaPerId(Long id) {
+	public Collezione cercaCollezionePerId(Long id) {
 		Optional<Collezione> optional = collezioneRepo.findById(id);
 		
 		if(optional.isPresent())

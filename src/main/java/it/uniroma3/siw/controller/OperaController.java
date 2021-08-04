@@ -117,11 +117,10 @@ public class OperaController {
 								@PathVariable("id") Long id,
 								BindingResult bindinResult,
 								Model model){
-		System.out.println(opera.getArtista().getId() + "\n\n\n\n\n\n");
 		
 		this.operaValidator.validate(opera, bindinResult);
 		
-		//if(!bindinResult.hasErrors()) {
+		if(!bindinResult.hasErrors()) {
 			Long idArtista = opera.getArtista().getId();
 			Artista artista = artistaService.cercaArtistaPerId(idArtista);
 			
@@ -142,8 +141,8 @@ public class OperaController {
 			model.addAttribute("opere", this.operaService.tutti());
 
 			return "opere.html";
-		//}
-		//return "admin/editOperaForm.html";
+		}
+		return "admin/editOperaForm.html";
 	}
 	
 	
@@ -164,19 +163,6 @@ public class OperaController {
 		return "opere.html";
 	}
 	
-//	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
-//	public String showEditOpera(@PathVariable(name = "id") Long id, Model model) {
-//		model.addAttribute("opera", operaService.cercaOperaPerId(id));
-//		return "/admin/editProva";
-//	}
-//	
-//	@RequestMapping(value="/edit/{id}", method=RequestMethod.POST)
-//	public String edit(@PathVariable("id") Long id, @ModelAttribute("opera") Opera opera, Model model) {
-//		System.out.println("EDIT" + id + opera.getNome() + "\n\n\n\n\n\n");
-//		operaService.updateOpera(opera);
-//		model.addAttribute("opere", this.operaService.tutti());
-//		return "opere.html";
-//	}
-//	
+
 	
 }

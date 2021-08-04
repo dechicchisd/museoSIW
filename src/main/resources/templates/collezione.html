@@ -4,28 +4,17 @@
 <body>
 <!--DEVO SOSTITUIRE NAV CON HEADER-->
   <nav th:replace="fragments/base.html :: navbar(page='artista')"></nav>
-  <main id="artista-main">
+  <main id="collezione-main">
 	  	<section class="museum-background">
   		<div class="container-trasparente">
-	  		<span class="nome-principale" th:text="|${artista.nome} ${artista.cognome}|">Nome</span>
+	  		<span class="nome-principale" th:text="${collezione.nome}">Nome</span>
 	  		
 	  		<section class="section-trasparente">
-		  		<div class="foto-container">
-		  			<img th:src="${artista.path}" >
-		  		</div>
 		  		<div class="info-container">
 		  			<div class="background-opaco">
 			  			<div class="info">
-				  			<span>Nascita: </span>
-				  			<span th:text="|${nascita} &nbsp; ${artista.luogoDiNascita}|"></span>
-			  			</div>
-			  			<div class="info">
-				  			<span>Morte: </span>
-				  			<span th:text="|${morte} &nbsp; ${artista.luogoDiMorte}|"></span>
-			  			</div>
-						<div class="info">
 				  			<span>Descrizione: </span>
-				  			<span th:text="${artista.biografia}"></span>
+				  			<span th:text="${collezione.descrizione}"></span>
 			  			</div>
 		  			</div>
 		  		</div>
@@ -36,7 +25,7 @@
 			  		
 			  		
 			  		<ul class="lista-opere">
-						<li th:each="opera : ${opere}">
+						<li th:each="opera : ${collezione.opere}">
 							
 					  		<a class="blue-link" href="artista.html" 
 					  		   th:href="@{'/opera' + '/' + ${opera.id}}">
@@ -47,11 +36,11 @@
 				  	
 			  	</div>
 			</section>
-			<div class="button-div">
+			<!--<div class="button-div">
 					<a th:if="${session.credentials.ruolo == 'ADMIN'}" class="btn" 
 			  	       th:href="@{/getSave/{id} (id = ${artista.id})}">Aggiungi opera
 			  	    </a>
-			</div>
+			</div>-->
 			  	    
 	  	</div>
 	 </section>

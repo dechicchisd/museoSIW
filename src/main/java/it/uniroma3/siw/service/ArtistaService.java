@@ -46,15 +46,15 @@ public class ArtistaService {
 		
 		return false;
 	}
-
+	
+	@Transactional
 	public void deleteArtista(Long id) {
 		this.artistaRepo.delete(this.cercaArtistaPerId(id));
 	}
 
-	public void updateArtista(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
+
 	
 	
 }

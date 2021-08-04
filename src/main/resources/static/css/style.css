@@ -20,7 +20,7 @@ section{
 	list-style-type: none;
 }
 
-.blue-link:visited, .blue-button:visited{
+.blue-link:visited, .blue-button:visited, .blue-link:active, .blue-button:active{
 	color: blue;
 }
 
@@ -150,7 +150,7 @@ nav a{
 	height: 450px;
 }
 
-#nome-artista, #nome-opera{
+.nome-principale{
 	display: block;
 	font-weight: bold;
 	font-size: 30px;
@@ -261,21 +261,21 @@ nav a{
 	padding-bottom: 40px;
 }
 
-#lista-opere{
+.lista-opere{
 	width: 1310px;
 	justify-content: space-around;
 	display: flex;
 	flex-wrap: wrap;
 }
 
-#lista-opere li{
+.lista-opere li{
 	width: 300px;
 	height: 300px;
 	overflow: hidden;
 	margin-bottom: 20px;
 }
 
-#lista-opere img{
+.lista-opere img{
 	width: 300px;
 	height: auto;
 }

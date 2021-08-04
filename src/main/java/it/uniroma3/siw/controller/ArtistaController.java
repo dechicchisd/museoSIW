@@ -2,6 +2,8 @@ package it.uniroma3.siw.controller;
 
 
 
+import java.util.List;
+
 import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.controller.validator.ArtistaValidator;
 import it.uniroma3.siw.model.Artista;
+import it.uniroma3.siw.model.Opera;
 import it.uniroma3.siw.service.ArtistaService;
 import it.uniroma3.siw.service.OperaService;
 import it.uniroma3.siw.utils.UtilsSiw;
 
 @Controller
 public class ArtistaController {
+	
 	@Autowired
 	private ArtistaService artistaService;
 	
@@ -30,6 +34,8 @@ public class ArtistaController {
 	
 	@Autowired
 	private ArtistaValidator artistaValidator;
+	
+	
 	
 	@RequestMapping(value="/artisti", method=RequestMethod.GET)
 	public String getArtisti(Model model) {
@@ -95,6 +101,65 @@ public class ArtistaController {
 		this.artistaService.deleteArtista(id);
 		model.addAttribute("artisti", this.artistaService.tutti());
 		return "artisti";
+	}
+	
+	@RequestMapping(value="/getEditArtistaForm/{id}", method=RequestMethod.GET)
+	public String getEditArtistaForm(Model model, @PathVariable("id") Long id) {
+		model.addAttribute("artista", this.artistaService.cercaArtistaPerId(id));
+		return "admin/editArtistaForm.html";
+	}
+	
+	@RequestMapping(value="/editArtista/{id}", method=RequestMethod.POST)
+	public String editAtrtista(@ModelAttribute("artista") Artista artista,
+							 @RequestParam("file") MultipartFile file,
+							 @PathVariable("id") Long id,
+							 BindingResult bindingResult,
+							 Model model) {
+		
+		
+		artista.setNome(WordUtils.capitalize(artista.getNome()));
+		artista.setCognome(WordUtils.capitalize(artista.getCognome()));
+		
+		this.artistaValidator.validate(artista, bindingResult);
+		
+		
+		//if(!bindingResult.hasErrors()) {
+			
+			
+			String parent;
+			String name="";
+			
+			if(file!=null)
+				name = file.getOriginalFilename();
+			
+			if(artista.getCognome() != null)
+				parent = artista.getCognome().replaceAll(" ", "").toLowerCase();
+			
+			else
+				parent = artista.getNome().replaceAll(" ", "").toLowerCase();
+			
+			String path = "/img/" + parent + "/" + name;
+			artista.setPath(path);
+			
+			List<Opera> opere = this.operaService.getOperePerArtistaId(id);
+			
+			this.artistaService.deleteArtista(id);
+			this.artistaService.inserisci(artista);
+			
+			List<Artista> artisti = this.artistaService.tutti();
+			Artista ultimoArtista = artisti.get(artisti.size()-1);
+			
+			System.out.println(ultimoArtista.getId() + "\n\n\n");
+			for(Opera o : opere) {
+				o.setArtista(ultimoArtista);
+				this.operaService.inserisci(o);
+			}
+			
+			model.addAttribute("artisti", this.artistaService.tutti());
+			
+			return "artisti.html";
+		//}
+		//return "/admin/addArtistaForm.html";
 	}
 	
 }

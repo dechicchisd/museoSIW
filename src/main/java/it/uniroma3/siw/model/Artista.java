@@ -1,6 +1,7 @@
 package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -43,6 +44,10 @@ public class Artista {
 	
 	@OneToMany(mappedBy="artista", cascade=CascadeType.REMOVE)
 	private List<Opera> opere;
+	
+	public Artista() {
+		this.opere = new ArrayList<Opera>();
+	}
 	
 	
 	public void addOpera(Opera opera) {

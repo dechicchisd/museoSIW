@@ -14,7 +14,7 @@
 		  		   th:href="@{'/artista' + '/' + ${artista.id}}"
 		  	   	   th:text="|${artista.nome} ${artista.cognome}|">Nome Cognome</a>
 		  	   	<span class ="edit-button">
-		  	   	 	<a class="blue-button" th:href="@{'/modificaArtista' +'/' + ${artista.id}}"><i class="fa fa-pencil"></i></a>
+		  	   	 	<a class="blue-button" th:href="@{'/getEditArtistaForm' +'/' + ${artista.id}}"><i class="fa fa-pencil"></i></a>
 		  	   	 	<a class="blue-button" id="deleteButton" th:href="@{'/eliminaArtista' +'/' + ${artista.id}}"><i class="fa fa-trash"></i></a>
 		  	    </span>
 		  	</li>  
