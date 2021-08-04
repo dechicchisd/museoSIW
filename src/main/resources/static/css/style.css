@@ -117,7 +117,7 @@ nav a{
 }
 
 
-#artista-main .container-trasparente {
+#artista-main .container-trasparente, #collezione-main .container-trasparente{
 	display: flex;
 	width: 90%;
 	min-height: 80vh;
@@ -253,11 +253,11 @@ nav a{
 }
 
 
-#artista-main span, #opera-main span{
+#artista-main span, #opera-main span, #collezione-main span{
 	text-align: center;
 }
 
-#artista-main h2{
+#artista-main h2, #collezione-main h2{
 	padding-bottom: 40px;
 }
 
