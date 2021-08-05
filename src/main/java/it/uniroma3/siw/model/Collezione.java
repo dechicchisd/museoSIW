@@ -28,7 +28,7 @@ public class Collezione {
 	
 	private String descrizione;
 	
-	@OneToMany(mappedBy="collezione", cascade=CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="collezione", cascade=CascadeType.PERSIST)
 	private List<Opera> opere;
 	
 	@ManyToOne

@@ -37,10 +37,9 @@ public class OperaController {
 	@Autowired
 	private OperaValidator operaValidator;
 	
-	@RequestMapping(value="getSave/{id}", method=RequestMethod.GET)
-	public String getAddOperaForm(Model model, @PathVariable("id") Long id) {
+	@RequestMapping(value="/getSave", method=RequestMethod.GET)
+	public String getAddOperaForm(Model model) {
 		model.addAttribute("opera", new Opera());
-		model.addAttribute("artista", artistaService.cercaArtistaPerId(id));
 		model.addAttribute("artisti", this.artistaService.tutti());
 		model.addAttribute("collezioni", this.collezioneService.tutti());
 		return "admin/addOperaForm.html";
@@ -144,25 +143,5 @@ public class OperaController {
 		}
 		return "admin/editOperaForm.html";
 	}
-	
-	
-	
-	
-	
-	
-	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String saveOpera(@ModelAttribute("opera") Opera opera, 
-								//@RequestParam("file") MultipartFile file,
-								//BindingResult bindinResult,
-								Model model){
-		
-		
-		this.operaService.inserisci(opera);
-		model.addAttribute("opere", this.operaService.tutti());
-
-		return "opere.html";
-	}
-	
-
 	
 }

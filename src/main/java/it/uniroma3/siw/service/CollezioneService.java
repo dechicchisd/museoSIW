@@ -45,5 +45,10 @@ public class CollezioneService {
 		
 		return false;
 	}
+
+	@Transactional
+	public void deleteCollezione(Long id) {
+		this.collezioneRepo.delete(this.cercaCollezionePerId(id));;
+	}
 	
 }

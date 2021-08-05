@@ -22,7 +22,7 @@
 				  		<div><select th:field=*{artista.id}>
 				  				<option value="" selected>-- Seleziona artista --</option>
 				  				<option th:each="a : ${artisti}"
-				  				 		th:text="|${a.nome} ${a.cognome} ${a.id} ${artista.id}|"
+				  				 		th:text="|${a.nome} ${a.cognome}|"
 				  				  		th:value="${a.id}">
 				  				</option>
 				  				

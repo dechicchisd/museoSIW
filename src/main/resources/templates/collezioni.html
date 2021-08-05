@@ -15,7 +15,7 @@
 		  	   	   th:text="${c.nome}">Nome collezione</a>
 		  	   	   
 		  	   	<span class ="edit-button">
-		  	   	 	<a class="blue-button" th:href="@{'/editCollezione' +'/' + ${c.id}}"><i class="fa fa-pencil"></i></a>
+		  	   	 	<a class="blue-button" th:href="@{'/getEditCollezioneForm' +'/' + ${c.id}}"><i class="fa fa-pencil"></i></a>
 		  	   	 	<a class="blue-button" id="deleteButton" th:href="@{'/eliminaCollezione' +'/' + ${c.id}}"><i class="fa fa-trash"></i></a>
 		  	    </span>
 		  	</li>  

@@ -54,10 +54,7 @@ public class OperaService {
 		return this.operaRepository.findByArtista(a);
 	}
 
-	@Transactional
-	public List<Opera> getOperePerArtistaId(Long id){
-		return this.operaRepository.findByArtistaId(id);
-	}
+	 
 	
 	@Transactional
 	public void deleteOpera(Long id) {
