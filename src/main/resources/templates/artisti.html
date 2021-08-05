@@ -7,7 +7,7 @@
   	<section class="museum-background">
   		<div class="white-container">
   		  <div class="titolo"><span>ELENCO ARTISTI</span></div>
-		  <ul class="lista">
+		  <ul th:if="${session.credentials.ruolo == 'ADMIN'}" class="lista">
 		  	<li th:each="artista : ${artisti}">
 		  		<a class="blue-link"
 		  		   href="artista.html"
@@ -18,9 +18,20 @@
 		  	   	 	<a class="blue-button" id="deleteButton" th:href="@{'/eliminaArtista' +'/' + ${artista.id}}"><i class="fa fa-trash"></i></a>
 		  	    </span>
 		  	</li>  
-		  </ul>  		
+		  </ul> 
 		  
-		  <a th:if="${session.credentials.ruolo == 'ADMIN'}" class="btn" id="addArtistaBtn" th:href="@{/addArtistaForm}">Aggiungi artista</a>
+		  <ul th:unless="${session.credentials.ruolo == 'ADMIN'}" class="lista-unless">
+		  	<li th:each="artista : ${artisti}">
+		  		<a class="blue-link"
+		  		   href="artista.html"
+		  		   th:href="@{'/artista' + '/' + ${artista.id}}"
+		  	   	   th:text="|${artista.nome} ${artista.cognome}|">Nome Cognome</a>
+		  	</li>  
+		  </ul>  		
+		  <div class="rigid-box">
+			  <a th:if="${session.credentials.ruolo == 'ADMIN'}" class="btn" id="addArtistaBtn" 
+			     th:href="@{/addArtistaForm}">Aggiungi artista</a>
+		  </div>
 		</div>
 	</section>
   </main>

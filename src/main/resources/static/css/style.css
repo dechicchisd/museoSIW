@@ -19,6 +19,11 @@ section{
 	padding: 10px;
 	list-style-type: none;
 }
+.lista-unless li{
+	padding: 10px;
+	list-style-type: none;
+	text-align: center;
+}
 
 .blue-link:visited, .blue-button:visited, .blue-link:active, .blue-button:active{
 	color: blue;
@@ -206,7 +211,7 @@ nav a{
 }
 
 
-.lista a{
+.lista a, .lista-unless a{
 	font-size: 20px;
 }
 
@@ -343,7 +348,6 @@ nav a{
 }
 
 
-
 form div{
 	padding:8px;
 	display:flex;
@@ -353,4 +357,9 @@ form div{
 
 .section-trasparente{
 	margin-top: 40px;
+}
+
+.rigid-box{
+	min-height: 40px;
+	width: 100%
 }
