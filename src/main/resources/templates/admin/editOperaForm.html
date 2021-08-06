@@ -22,7 +22,7 @@
 			  		</div>
 			  		
 			  		
-			  		<div>
+			  		<div th:if=*{artista}>
 				  		<div>Artista: </div>
 				  		<div><select th:field=*{artista.id}>
 				  				<option value="" selected>-- Seleziona artista --</option>
@@ -37,7 +37,15 @@
 				  		</div>
 				  	</div>
 				  	
-				  	<div>
+				  	<div th:unless=*{artista}>
+				  		<div>Artista: </div>
+				  		<div><select th:field=*{artista.id}>
+				  				<option value="" selected>-- Seleziona artista --</option>
+				  			</select>
+				  		</div>
+				  	</div>
+				  	
+				  	<div th:if=*{collezione}>
 				  		<div>Collezione:</div>
 				  		<div><select th:field=*{collezione.id}>
 				  				<option value="">-- Seleziona collezione --</option>
@@ -47,6 +55,14 @@
 				  				  		th:selected="${c.id == opera.collezione.id}">
 				  				 </option>
 				  				  
+				  			</select>
+				  		</div>
+			  		</div>
+			  		
+			  		<div th:unless=*{collezione}>
+				  		<div>Collezione:</div>
+				  		<div><select th:field=*{collezione.id}>
+				  				<option value="">-- Seleziona collezione --</option>
 				  			</select>
 				  		</div>
 			  		</div>

@@ -3,6 +3,7 @@ package it.uniroma3.siw.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,19 +20,16 @@ import lombok.NoArgsConstructor;
 public class Curatore {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable=false)
 	private String nome;
 	
-	@Column(nullable=false)
 	private String cognome;
 	
-	@Column(nullable=false)
 	private LocalDate dataDiNascita;
 	
-	@OneToMany(mappedBy="curatore")
-	private List<Collezione> collezione;
+	@OneToMany(mappedBy="curatore", cascade = CascadeType.ALL)
+	private List<Collezione> collezioni;
 	
 }

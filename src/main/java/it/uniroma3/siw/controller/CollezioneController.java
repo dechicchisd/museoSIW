@@ -51,7 +51,7 @@ public class CollezioneController {
 			return "collezioni.html";
 			}
 		
-		return "addCollezioneForm";
+		return "addCollezioneForm.html";
 	}
 	
 	@RequestMapping(value="/collezione/{id}", method=RequestMethod.GET)
@@ -80,7 +80,7 @@ public class CollezioneController {
 								BindingResult bindinResult,
 								Model model){
 		
-		this.collezioneValidator.validate(collezione, bindinResult);
+		this.collezioneValidator.validateEdit(collezione, bindinResult);
 		
 		if(!bindinResult.hasErrors()) {
 			
@@ -97,8 +97,10 @@ public class CollezioneController {
 	
 	@RequestMapping(value="/eliminaCollezione/{id}", method=RequestMethod.GET)
 	public String eliminaOpera(@PathVariable("id") Long id, Model model){
+		
 		this.collezioneService.deleteCollezione(id);
 		model.addAttribute("opere", this.collezioneService.tutti());
+		
 		return "opere.html";
 	}
 }

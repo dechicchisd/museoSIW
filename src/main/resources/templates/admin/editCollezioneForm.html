@@ -27,7 +27,7 @@
 			  			<div><input type="text" th:field="*{descrizione}"></div>
 				  	</div>
 				  	
-				  	<!--<div>
+				  	<div th:if=*{curatore}>
 				  		<div>Curatore: </div>
 				  		<div><select th:field=*{curatore.id}>
 				  				<option value="">-- Seleziona Curatore --</option>
@@ -39,7 +39,15 @@
 				  				  
 				  			</select>
 				  		</div>
-				  	</div>-->
+				  	</div>
+				  	
+				  	<div th:unless=*{curatore}>
+				  		<div>Curatore: </div>
+				  		<div><select>
+				  				<option value="">-- Seleziona Curatore --</option>
+				  			</select>
+				  		</div>
+				  	</div>
 				  	
 			  		<div><button type="submit">Modifica</button></div>
 		  		</div>
