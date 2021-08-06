@@ -19,7 +19,7 @@ section{
 	padding: 10px;
 	list-style-type: none;
 }
-.lista-unless li{
+.lista-centrata li{
 	padding: 10px;
 	list-style-type: none;
 	text-align: center;
@@ -211,7 +211,7 @@ nav a{
 }
 
 
-.lista a, .lista-unless a{
+.lista a, .lista-centrata a{
 	font-size: 20px;
 }
 

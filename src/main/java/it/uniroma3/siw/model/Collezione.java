@@ -32,4 +32,9 @@ public class Collezione {
 	
 	@ManyToOne
 	private Curatore curatore;
+	
+	
+	public void deleteOpera(int index) {
+		this.opere.remove(index);	
+	}
 }

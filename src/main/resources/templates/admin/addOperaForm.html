@@ -34,7 +34,7 @@
 				  	<div>
 				  		<div>Collezione:</div>
 				  		<div><select th:field=*{collezione.id}>
-				  				<option value="">-- Seleziona collezione --</option>
+				  				<option value="" selected>-- Seleziona collezione --</option>
 				  				<option th:each="c : ${collezioni}"
 				  				  		th:text="${c.nome}"
 				  				  		th:value="${c.id}">
@@ -42,6 +42,7 @@
 				  				  
 				  			</select>
 				  		</div>
+				  	</div>
 			  		
 			  		<div>
 			  			<div>Scegli immagine:</div>

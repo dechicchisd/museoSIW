@@ -40,13 +40,18 @@ public class MainController {
 		List<Collezione> collezioni = collezioneService.tutti();
     	Collezione[] randomColl = UtilsSiw.randomSelection(collezioni);
     	
-    	for(int i=0; i<randomColl.length; i++) {
-    		System.out.println(randomColl[i].getNome());
-    	}
+    	UtilsSiw.cut(randomColl);
     	
     	System.out.println("\n\n\n\n\n");
     	model.addAttribute("collezioni", randomColl);
 
     	return "home.html";
+	}
+	
+	@RequestMapping(value = "/getOperazioni", method = RequestMethod.GET)
+	public String getOperazioni(Model model) {
+		
+
+    	return "/admin/operazioni.html";
 	}
 }

@@ -6,7 +6,7 @@
   <main id="addArtista">
 	<section class="museum-background">
   			<div class="white-container">
-  				<div class="titolo"><span>LOGIN</span></div>
+  				<div class="titolo"><span>AGGIUNGI ARTISTA</span></div>
 				<form th:action="@{/newArtista}" method="POST" th:object="${artista}" enctype="multipart/form-data">
 				  	<div class="input-container">
 				  		<div>
@@ -20,7 +20,7 @@
 				  		
 				  		<div>
 				  			<div>Data di nascita:</div>
-				  			<div><input type="text" name="dataDiNascita" th:field="*{dataDiNascita}" th:value="*{dataDiNascita}"></div>
+				  			<div><input type="text" name="dataDiNascita" th:field="*{dataDiNascita}" th:value="*{dataDiNascita}" placeholder="YY-MM-DD"></div>
 				  		</div>
 				  		
 				  		<div>
@@ -30,7 +30,7 @@
 				  		
 				  		<div>
 				  			<div>Data di morte:</div>
-				  			<div><input type="text" name="dataDiMorte" th:field="*{dataDiMorte}"th:value="*{dataDiMorte}"></div>
+				  			<div><input type="text" name="dataDiMorte" th:field="*{dataDiMorte}"th:value="*{dataDiMorte}" placeholder="YY-MM-DD"></div>
 				  		</div>
 				  		
 				  		<div>

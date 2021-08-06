@@ -20,7 +20,7 @@
 		  	    </span>
 		  	</li>  
 		  </ul>
-		  <ul th:unless="${session.credentials.ruolo == 'ADMIN'}" class="lista-unless">
+		  <ul th:unless="${session.credentials.ruolo == 'ADMIN'}" class="lista-centrata">
 		  	<li th:each="c : ${collezioni}">
 		  		<a class="blue-link"
 		  		   href="persona.html"

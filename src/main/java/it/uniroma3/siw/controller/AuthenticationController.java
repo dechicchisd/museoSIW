@@ -71,9 +71,8 @@ public class AuthenticationController {
     	List<Collezione> collezioni = collezioneService.tutti();
     	Collezione[] randomColl = UtilsSiw.randomSelection(collezioni);
     	
-    	for(int i=0; i<randomColl.length; i++) {
-    		System.out.println(randomColl[i].getNome());
-    	}
+    	UtilsSiw.cut(randomColl);
+
     	model.addAttribute("collezioni", randomColl);
 
     	return "home.html";

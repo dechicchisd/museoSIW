@@ -7,6 +7,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import it.uniroma3.siw.model.Collezione;
+import it.uniroma3.siw.model.Opera;
 import it.uniroma3.siw.service.CollezioneService;
 
 public class UtilsSiw {
@@ -93,5 +94,15 @@ public class UtilsSiw {
 		
 		return randomColl;
 		
+	}
+
+
+	public static void cut(Collezione[] randomColl) {
+		for(int i=0; i<randomColl.length; i++) {
+			Collezione coll = randomColl[i];
+			for(int j=coll.getOpere().size(); j>3; j--) {
+				coll.deleteOpera(j-1);
+			}
+		}
 	}
 }

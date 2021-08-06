@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+<!--DEVO SOSTITUIRE NAV CON HEADER-->
+  <nav th:replace="fragments/base.html :: navbar(page='artista')"></nav>
+  <main id="opera-main">
+	 <section class="museum-background">
+  		<div class="white-container">
+  			<div class="titolo"><span>AGGIUNGI OPERA</span></div>
+		  	<form th:action="@{/curatore}" method="POST" th:object="${curatore}" enctype="multipart/form-data">
+		  		<div class="input-container">
+			  		<div>
+			  			<div>Nome:</div> 
+			  			<div><input type="text" name="nome" th:field="*{nome}" th:value="*{nome}"></div>
+			  		</div>
+			  		
+			  		<div>
+			  			<div>Cognome:</div> 
+			  			<div><input type="text" name="cognome" th:field="*{cognome}" th:value="*{cognome}"></div>
+			  		</div>
+			  		
+				  <div>
+				  			<div>Data di nascita:</div>
+				  			<div><input type="text" name="dataDiNascita" th:field="*{dataDiNascita}" th:value="*{dataDiNascita}" placeholder="YY-MM-DD"></div>
+				  </div>
+			  		
+			  		<div><button type="submit">Inserisci</button></div>
+		  		</div>
+		  	</form>
+  		</div>
+	 </section>
+	 
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='artisti')"></nav>
+  <main id="operazioni-main">
+  	<section class="museum-background">
+  		<div class="white-container">
+  		  <div class="titolo"><span>ELENCO OPERAZIONI</span></div>
+		  <ul class="lista-centrata">
+		  	<li>
+		  		<a class="blue-link"
+		  		   th:href="@{/addCuratoreForm}">Inserisci Curatore</a>
+		  	</li>  
+		  	<li>
+		  		<a class="blue-link"
+		  		   th:href="@{/getSave}">Inserisci Opera</a>
+		  	</li>  
+		  	<li>
+		  		<a class="blue-link"
+		  		   th:href="@{/addArtistaForm}">Inserisci Artista</a>
+		  	</li>  
+		  </ul> 
+		  
+		  <div class="rigid-box"></div>
+		  
+		</div>
+	</section>
+  </main>
+</body>
+</html>
