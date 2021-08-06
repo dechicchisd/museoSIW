@@ -90,6 +90,8 @@ public class ArtistaController {
 		return "/admin/addArtistaForm.html";
 	}
 	
+	
+	
 	@RequestMapping(value="/addArtistaForm", method=RequestMethod.GET)
 	public String getAddArtistaForm(Model model) {
 		model.addAttribute("artista", new Artista());
@@ -120,10 +122,10 @@ public class ArtistaController {
 		artista.setNome(WordUtils.capitalize(artista.getNome()));
 		artista.setCognome(WordUtils.capitalize(artista.getCognome()));
 		
-		this.artistaValidator.validate(artista, bindingResult);
+		this.artistaValidator.validateEdit(artista, bindingResult);
 		
 		
-		//if(!bindingResult.hasErrors()) {
+		if(!bindingResult.hasErrors()) {
 			
 			
 			String parent;
@@ -149,7 +151,6 @@ public class ArtistaController {
 			List<Artista> artisti = this.artistaService.tutti();
 			Artista ultimoArtista = artisti.get(artisti.size()-1);
 			
-			System.out.println(ultimoArtista.getId() + "\n\n\n");
 			for(Opera o : opere) {
 				o.setArtista(ultimoArtista);
 				this.operaService.inserisci(o);
@@ -158,8 +159,8 @@ public class ArtistaController {
 			model.addAttribute("artisti", this.artistaService.tutti());
 			
 			return "artisti.html";
-		//}
-		//return "/admin/addArtistaForm.html";
+		}
+		return "/admin/editArtistaForm.html";
 	}
 	
 }

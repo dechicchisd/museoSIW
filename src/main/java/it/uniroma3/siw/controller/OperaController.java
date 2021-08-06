@@ -77,7 +77,10 @@ public class OperaController {
 			model.addAttribute("morte", UtilsSiw.formatDate(artista.getDataDiMorte()));
 			return "artista.html";
 		}
-		return "admin/addArtistaForm.html";
+		model.addAttribute("artisti", this.artistaService.tutti());
+		model.addAttribute("collezioni", this.collezioneService.tutti());
+		return "admin/addOperaForm.html";
+
 	}
 	
 	@RequestMapping(value="/opere", method=RequestMethod.GET)

@@ -31,6 +31,11 @@ public class ArtistaValidator implements Validator{
 			}
 		}
 	}
+	
+	public void validateEdit(Object o, Errors errors) {
+
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
+	}
 
 	@Override
 	public boolean supports(Class<?> aClass) {
