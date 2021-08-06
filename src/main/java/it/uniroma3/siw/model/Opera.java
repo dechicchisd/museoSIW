@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Data
-public class Opera {
+public class Opera implements Comparable<Opera>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -26,6 +26,12 @@ public class Opera {
 	private Collezione collezione;
 	
 	private String path;
+
+	@Override
+	public int compareTo(Opera o) {
+		
+		return this.nome.compareTo(o.getNome());
+	}
 	
 	
 

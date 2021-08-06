@@ -2,6 +2,7 @@ package it.uniroma3.siw.controller;
 
 
 
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.text.WordUtils;
@@ -39,7 +40,12 @@ public class ArtistaController {
 	
 	@RequestMapping(value="/artisti", method=RequestMethod.GET)
 	public String getArtisti(Model model) {
-		model.addAttribute("artisti", this.artistaService.tutti());
+		
+		List<Artista> artisti = this.artistaService.tutti();
+		Collections.sort(artisti);
+		
+		model.addAttribute("artisti", artisti);
+
 		return "artisti.html";
 	}
 	
@@ -84,7 +90,11 @@ public class ArtistaController {
 			artista.setPath(path);
 			
 			this.artistaService.inserisci(artista);
-			model.addAttribute("artisti", this.artistaService.tutti());
+			
+			List<Artista> artisti = this.artistaService.tutti();
+			Collections.sort(artisti);
+			
+			model.addAttribute("artisti", artisti);
 			return "artisti.html";
 		}
 		return "/admin/addArtistaForm.html";
@@ -101,7 +111,10 @@ public class ArtistaController {
 	@RequestMapping(value="/eliminaArtista/{id}", method=RequestMethod.GET)
 	public String eliminaArtista(@PathVariable("id") Long id, Model model){
 		this.artistaService.deleteArtista(id);
-		model.addAttribute("artisti", this.artistaService.tutti());
+		List<Artista> artisti = this.artistaService.tutti();
+		Collections.sort(artisti);
+		
+		model.addAttribute("artisti", artisti);
 		return "artisti";
 	}
 	
@@ -149,14 +162,16 @@ public class ArtistaController {
 			this.artistaService.inserisci(artista);
 			
 			List<Artista> artisti = this.artistaService.tutti();
+			Collections.sort(artisti);
+			
+			model.addAttribute("artisti", artisti);
 			Artista ultimoArtista = artisti.get(artisti.size()-1);
 			
 			for(Opera o : opere) {
 				o.setArtista(ultimoArtista);
 				this.operaService.inserisci(o);
 			}
-			
-			model.addAttribute("artisti", this.artistaService.tutti());
+
 			
 			return "artisti.html";
 		}

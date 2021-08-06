@@ -32,7 +32,7 @@
 				  		<div><select th:field=*{curatore.id}>
 				  				<option value="">-- Seleziona Curatore --</option>
 				  				<option th:each="c : ${curatori}"
-				  				  		th:text="|${c.nome} ${c.cognome}|"
+				  				  		th:text="|${c.cognome} ${c.nome}|"
 				  				  		th:value="${c.id}"
 				  				  		th:selected="${c.id == collezione.curatore.id}">
 				  				 </option>

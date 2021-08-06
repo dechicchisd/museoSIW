@@ -1,5 +1,8 @@
 package it.uniroma3.siw.controller;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import it.uniroma3.siw.controller.validator.CollezioneValidator;
 import it.uniroma3.siw.model.Artista;
 import it.uniroma3.siw.model.Collezione;
+import it.uniroma3.siw.model.Curatore;
 import it.uniroma3.siw.model.Opera;
 import it.uniroma3.siw.service.CollezioneService;
 import it.uniroma3.siw.service.CuratoreService;
@@ -47,7 +51,11 @@ public class CollezioneController {
 			
 		if(!bindingResult.hasErrors()) {
 			this.collezioneService.inserisci(collezione);
-			model.addAttribute("collezioni", this.collezioneService.tutti());
+			
+			List<Collezione> collezioni = this.collezioneService.tutti();
+			Collections.sort(collezioni);
+			
+			model.addAttribute("collezioni", collezioni);
 			return "collezioni.html";
 			}
 		
@@ -63,14 +71,23 @@ public class CollezioneController {
 	
 	@RequestMapping(value="/collezioni")
 	public String getCollezioni(Model model) {
-		model.addAttribute("collezioni", this.collezioneService.tutti());
+		
+		List<Collezione> collezioni = this.collezioneService.tutti();
+		Collections.sort(collezioni);
+		
+		model.addAttribute("collezioni", collezioni);
+		
 		return "collezioni.html";
 	}
 	
 	@RequestMapping(value="/getEditCollezioneForm/{id}", method=RequestMethod.GET)
 	public String getEditCollezioneForm(Model model, @PathVariable("id") Long id) {
 		model.addAttribute("collezione", this.collezioneService.cercaCollezionePerId(id));
-		model.addAttribute("curatori", this.curatoreService.tutti());
+		
+		List<Curatore> curatori = this.curatoreService.tutti();
+		Collections.sort(curatori);
+		
+		model.addAttribute("curatori", curatori);
 		return "/admin/editCollezioneForm.html";
 	}
 	
@@ -87,8 +104,11 @@ public class CollezioneController {
 			this.collezioneService.deleteCollezione(id);
 			this.collezioneService.inserisci(collezione);
 			
-			model.addAttribute("collezioni", this.collezioneService.tutti());
-
+			List<Collezione> collezioni = this.collezioneService.tutti();
+			Collections.sort(collezioni);
+			
+			model.addAttribute("collezioni", collezioni);
+			
 			return "collezioni.html";
 		}
 		return "admin/editCollezioneForm.html";
@@ -99,8 +119,12 @@ public class CollezioneController {
 	public String eliminaOpera(@PathVariable("id") Long id, Model model){
 		
 		this.collezioneService.deleteCollezione(id);
-		model.addAttribute("opere", this.collezioneService.tutti());
+
+		List<Collezione> collezioni = this.collezioneService.tutti();
+		Collections.sort(collezioni);
 		
-		return "opere.html";
+		model.addAttribute("collezioni", collezioni);
+		
+		return "collezioni.html";
 	}
 }

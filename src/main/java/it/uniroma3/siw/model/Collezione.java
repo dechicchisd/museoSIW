@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class Collezione {
+public class Collezione implements Comparable<Collezione>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -36,5 +36,10 @@ public class Collezione {
 	
 	public void deleteOpera(int index) {
 		this.opere.remove(index);	
+	}
+
+	@Override
+	public int compareTo(Collezione o) {
+		return this.nome.compareTo(o.getNome());
 	}
 }

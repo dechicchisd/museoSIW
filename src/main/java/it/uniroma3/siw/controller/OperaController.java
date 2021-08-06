@@ -1,5 +1,8 @@
 package it.uniroma3.siw.controller;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import it.uniroma3.siw.controller.validator.OperaValidator;
 import it.uniroma3.siw.model.Artista;
+import it.uniroma3.siw.model.Collezione;
 import it.uniroma3.siw.model.Opera;
 import it.uniroma3.siw.service.ArtistaService;
 import it.uniroma3.siw.service.CollezioneService;
@@ -40,8 +44,15 @@ public class OperaController {
 	@RequestMapping(value="/getSave", method=RequestMethod.GET)
 	public String getAddOperaForm(Model model) {
 		model.addAttribute("opera", new Opera());
-		model.addAttribute("artisti", this.artistaService.tutti());
-		model.addAttribute("collezioni", this.collezioneService.tutti());
+
+		List<Artista> artisti = this.artistaService.tutti();
+		Collections.sort(artisti);
+		model.addAttribute("artisti", artisti);
+		
+		List<Collezione> collezioni = this.collezioneService.tutti();
+		Collections.sort(collezioni);
+		model.addAttribute("collezioni", collezioni);
+		
 		return "admin/addOperaForm.html";
 	}
 	
@@ -77,15 +88,27 @@ public class OperaController {
 			model.addAttribute("morte", UtilsSiw.formatDate(artista.getDataDiMorte()));
 			return "artista.html";
 		}
-		model.addAttribute("artisti", this.artistaService.tutti());
-		model.addAttribute("collezioni", this.collezioneService.tutti());
+		
+		List<Artista> artisti = this.artistaService.tutti();
+		Collections.sort(artisti);
+		model.addAttribute("artisti", artisti);
+		
+		List<Collezione> collezioni = this.collezioneService.tutti();
+		Collections.sort(collezioni);
+		model.addAttribute("collezioni", collezioni);
+		
 		return "admin/addOperaForm.html";
 
 	}
 	
 	@RequestMapping(value="/opere", method=RequestMethod.GET)
 	public String getOpere(Model model) {
-		model.addAttribute("opere", this.operaService.tutti());
+		List<Opera> opere = this.operaService.tutti();
+		
+		Collections.sort(opere);
+		
+		model.addAttribute("opere", opere);
+		
 		return "opere.html";
 	}
 	
@@ -100,7 +123,11 @@ public class OperaController {
 	@RequestMapping(value="/eliminaOpera/{id}", method=RequestMethod.GET)
 	public String eliminaOpera(@PathVariable("id") Long id, Model model){
 		this.operaService.deleteOpera(id);
-		model.addAttribute("opere", this.operaService.tutti());
+		List<Opera> opere = this.operaService.tutti();
+		
+		Collections.sort(opere);
+
+		model.addAttribute("opere", opere);
 		return "opere.html";
 	}
 	
@@ -108,8 +135,15 @@ public class OperaController {
 	public String getEditOpera(@PathVariable("id") Long id, Model model){
 		Opera opera = operaService.cercaOperaPerId(id);
 		model.addAttribute("opera", opera);
-		model.addAttribute("artisti", this.artistaService.tutti());
-		model.addAttribute("collezioni", this.collezioneService.tutti());
+		
+		List<Artista> artisti = this.artistaService.tutti();
+		Collections.sort(artisti);
+		model.addAttribute("artisti", artisti);
+
+		List<Collezione> collezioni = this.collezioneService.tutti();
+		Collections.sort(collezioni);
+		model.addAttribute("collezioni", collezioni);
+		
 		return "admin/editOperaForm.html";
 	}
 	
@@ -140,7 +174,11 @@ public class OperaController {
 			this.operaService.deleteOpera(id);
 			this.operaService.inserisci(opera);
 			
-			model.addAttribute("opere", this.operaService.tutti());
+			List<Opera> opere = this.operaService.tutti();
+			
+			Collections.sort(opere);
+			
+			model.addAttribute("opere", opere);
 
 			return "opere.html";
 		}

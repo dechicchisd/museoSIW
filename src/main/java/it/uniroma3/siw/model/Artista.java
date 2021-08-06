@@ -18,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Artista {
+public class Artista implements Comparable<Artista>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -45,6 +45,7 @@ public class Artista {
 	@OneToMany(mappedBy="artista", cascade=CascadeType.REMOVE)
 	private List<Opera> opere;
 	
+	
 	public Artista() {
 		this.opere = new ArrayList<Opera>();
 	}
@@ -52,6 +53,15 @@ public class Artista {
 	
 	public void addOpera(Opera opera) {
 		this.opere.add(opera);
+	}
+
+	
+	@Override
+	public int compareTo(Artista o) {
+		if(this.nome.compareTo(o.getNome()) == 0)
+			return this.cognome.compareTo(o.getCognome());
+			
+		return this.nome.compareTo(o.getNome());
 	}
 
 	

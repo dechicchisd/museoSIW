@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-public class Curatore {
+public class Curatore implements Comparable<Curatore>{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,5 +31,13 @@ public class Curatore {
 	
 	@OneToMany(mappedBy="curatore", cascade = CascadeType.ALL)
 	private List<Collezione> collezioni;
+
+	@Override
+	public int compareTo(Curatore o) {
+		if(this.cognome.compareTo(o.getCognome()) == 0)
+			return this.nome.compareTo(o.getNome());
+			
+		return this.cognome.compareTo(o.getCognome());
+	}
 	
 }
