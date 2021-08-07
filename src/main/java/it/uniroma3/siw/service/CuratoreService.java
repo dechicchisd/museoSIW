@@ -28,7 +28,7 @@ public class CuratoreService {
 	}
 	
 	@Transactional
-	public Curatore cercaOperaPerId(Long id) {
+	public Curatore cercaCuratorePerId(Long id) {
 		Optional<Curatore> optional = curatoreRepo.findById(id);
 		
 		if(optional.isPresent())
@@ -38,12 +38,16 @@ public class CuratoreService {
 	}
 	
 	@Transactional
-	public boolean alreadyExsists(Curatore curatore) {
+	public boolean alreadyExists(Curatore curatore) {
 		List<Curatore> artisti = curatoreRepo.findByNomeAndCognome(curatore.getNome(), curatore.getCognome());
 		
 		if(artisti.size() > 0)
 			return true;
 		
 		return false;
+	}
+
+	public void deleteCuratore(Long id) {
+		this.curatoreRepo.delete(this.cercaCuratorePerId(id));		
 	}
 }

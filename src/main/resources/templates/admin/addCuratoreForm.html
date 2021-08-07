@@ -5,11 +5,11 @@
 <body>
 <!--DEVO SOSTITUIRE NAV CON HEADER-->
   <nav th:replace="fragments/base.html :: navbar(page='artista')"></nav>
-  <main id="opera-main">
+  <main id="curatore-main">
 	 <section class="museum-background">
   		<div class="white-container">
-  			<div class="titolo"><span>AGGIUNGI OPERA</span></div>
-		  	<form th:action="@{/curatore}" method="POST" th:object="${curatore}" enctype="multipart/form-data">
+  			<div class="titolo"><span>AGGIUNGI CURATORE</span></div>
+		  	<form th:action="@{/addCuratore}" method="POST" th:object="${curatore}" enctype="multipart/form-data">
 		  		<div class="input-container">
 			  		<div>
 			  			<div>Nome:</div> 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
+<body>
+  <nav th:replace="fragments/base.html :: navbar(page='curatori')"></nav>
+  <main id="curatori-main">
+  	<section class="museum-background">
+  		<div class="white-container">
+  		  <div class="titolo"><span>ELENCO CURATORI</span></div>
+		  <ul class="lista">
+		  	<li th:each="curatore : ${curatori}">
+		  		<a class="blue-link"
+		  		   th:href="@{'/curatore' + '/' + ${curatore.id}}"
+		  	   	   th:text="|${curatore.nome} ${curatore.cognome}|">Nome Cognome</a>
+		  	   	<span class ="edit-button">
+		  	   	 	<a class="blue-button" th:href="@{'/getEditCuratoreForm' +'/' + ${curatore.id}}"><i class="fa fa-pencil"></i></a>
+		  	   	 	<a class="blue-button" id="deleteButton" th:href="@{'/eliminaCuratore' +'/' + ${curatore.id}}"><i class="fa fa-trash"></i></a>
+		  	    </span>
+		  	</li>  
+		  </ul> 
+		  
+		    		
+		  <div class="rigid-box">
+			  <a class="btn" id="addCuratoreBtn" 
+			     th:href="@{/addCuratoreForm}">Aggiungi curatore</a>
+		  </div>
+		</div>
+	</section>
+  </main>
+</body>
+</html>

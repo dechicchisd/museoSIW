@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,7 +29,10 @@ public class Curatore implements Comparable<Curatore>{
 	
 	private String cognome;
 	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dataDiNascita;
+	
+	
 	
 	@OneToMany(mappedBy="curatore", cascade = CascadeType.ALL)
 	private List<Collezione> collezioni;

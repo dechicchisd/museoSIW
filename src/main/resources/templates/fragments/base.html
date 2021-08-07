@@ -16,7 +16,7 @@
 	      <li><a class="anchor-item" href="#" th:href="@{/artisti}">Artisti</a></li>
 	      <li><a class="anchor-item" href="#" th:href="@{/opere}">Opere</a></li>
 	      <li><a class="anchor-item" href="#">About</a></li>	      
-	      <li th:if="${session.credentials.ruolo == 'ADMIN'}"><a class="anchor-item" href="#" th:href="@{/getOperazioni}">Admin</a></li>	      
+	      <li th:if="${session.credentials.ruolo == 'ADMIN'}"><a class="anchor-item" id="admin" th:href="@{/getOperazioni}">Admin</a></li>	      
 	    </ul>
 	    
 	    <ul th:unless="${session.credentials}">

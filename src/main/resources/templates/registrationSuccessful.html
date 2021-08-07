@@ -2,14 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/base.html :: headerfiles(title='SIW')"></head>
 <body>
-  <nav th:replace="fragments/base.html :: navbar(page='index')"></nav>
-  <main id="registerSuccessful">
+  <nav th:replace="fragments/base.html :: navbar(page='artisti')"></nav>
+  <main id="artisti-main">
   	<section class="museum-background">
-  		<div class="no-scroll-subsection">
-  			
- 		</div>
- 	</section>
+  		<div class="white-container">
+  		  <div class="titolo"><span>REGISTRAZIONE AVVENUTA CON SUCCESSO</span></div>
+		  
+		  
+		 	
+		  <div class="rigid-box" id="btn-centrato">
+			  <a class="btn" id="addArtistaBtn" 
+			     th:href="@{/login}">Login</a>
+		  </div>
+		</div>
+	</section>
   </main>
-
 </body>
 </html>
